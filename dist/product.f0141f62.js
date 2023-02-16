@@ -649,7 +649,7 @@ $(document).ready(function() {
     </div>
 
     <div class="product__main-info-price">
-      <span class="product__main-info-price-current"> ${price} </span>
+      <span class="product__main-info-price-current"> ${price} VNĐ</span>
     </div>
 
     <div class="product__main-info-description">
@@ -699,7 +699,7 @@ $(document).ready(function() {
     });
 });
 
-},{"regenerator-runtime/runtime":"dXNgZ","../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/ProductService":"63Op7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/helpers/UrlHelper":"9C87C"}],"63Op7":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"dXNgZ","../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/ProductService":"63Op7","../../app/helpers/UrlHelper":"9C87C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"63Op7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _axios = require("axios");

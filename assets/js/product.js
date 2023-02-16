@@ -108,7 +108,7 @@ $(document).ready(function () {
     </div>
 
     <div class="product__main-info-price">
-      <span class="product__main-info-price-current"> ${price} </span>
+      <span class="product__main-info-price-current"> ${price} VNĐ</span>
     </div>
 
     <div class="product__main-info-description">

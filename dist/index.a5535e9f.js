@@ -576,6 +576,11 @@ function scrollFunction() {
 // -------------------------------------
 $(document).ready(function() {
     const productService = new (0, _productServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+    const amountOrdersElement = $(".header__notice")[0];
+    const getAmountOrders = ()=>{
+        const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
+        amountOrdersElement.innerText = listProductInfo.length;
+    };
     const getAllProducts = async ()=>{
         try {
             const data = await productService.findAllProducts();
@@ -641,7 +646,7 @@ $(document).ready(function() {
                 </span>
 
                 <div class="bestselling__product-btn-wrap">
-                    <button class="bestselling__product-btn">Xem hàng</button>
+                    <a href="product.html?id=${key}" class="bestselling__product-btn" style="color: #fff;">Xem hàng</a>
                 </div>
             </div>
         </div>
@@ -654,6 +659,7 @@ $(document).ready(function() {
         }
     };
     getAllProducts();
+    getAmountOrders();
 });
 
 },{"regenerator-runtime/runtime":"dXNgZ","../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/ProductService":"63Op7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"63Op7":[function(require,module,exports) {

@@ -22,6 +22,12 @@ function scrollFunction() {
 
 $(document).ready(function () {
   const productService = new ProductService(FirebaseConstants.RealTimeDB, "Token");
+  const amountOrdersElement = $(".header__notice")[0];
+
+  const getAmountOrders = () => {
+    const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
+    amountOrdersElement.innerText = listProductInfo.length;
+  };
 
   const getAllProducts = async () => {
     try {
@@ -92,7 +98,7 @@ $(document).ready(function () {
                 </span>
 
                 <div class="bestselling__product-btn-wrap">
-                    <button class="bestselling__product-btn">Xem hàng</button>
+                    <a href="product.html?id=${key}" class="bestselling__product-btn" style="color: #fff;">Xem hàng</a>
                 </div>
             </div>
         </div>
@@ -107,4 +113,5 @@ $(document).ready(function () {
   };
 
   getAllProducts();
+  getAmountOrders();
 });
