@@ -563,9 +563,6 @@ var _firebaseConstants = require("../../app/constants/FirebaseConstants");
 var _firebaseConstantsDefault = parcelHelpers.interopDefault(_firebaseConstants);
 var _productService = require("../../app/services/ProductService");
 var _productServiceDefault = parcelHelpers.interopDefault(_productService);
-setTimeout(function() {
-    location.reload();
-}, 60000);
 //Get the button
 var mybutton = document.getElementById("myBtn-scroll");
 // When the user scrolls down 20px from the top of the document, show the button
@@ -575,11 +572,6 @@ window.onscroll = function() {
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) mybutton.style.display = "block";
     else mybutton.style.display = "none";
-}
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
 }
 // -------------------------------------
 $(document).ready(function() {
@@ -596,35 +588,35 @@ $(document).ready(function() {
                 const { image , name , price  } = element;
                 list += `
             <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-            <div class="product__panel-item-wrap">
-                <div class="product__panel-img-wrap">
-                    <img height='100%' src=${image} alt=${name} class="product__panel-img">
-                </div>
-                <h3 class="product__panel-heading">
-                    <a href="product.html" class="product__panel-link">${name}</a>
-                </h3>
-                <div class="product__panel-rate-wrap">
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                </div>
+              <div class="product__panel-item-wrap">
+                  <div class="product__panel-img-wrap">
+                      <img height='100%' src=${image} alt=${name} class="product__panel-img">
+                  </div>
+                  <h3 class="product__panel-heading">
+                      <a href="product.html?id=${key}" class="product__panel-link">${name}</a>
+                  </h3>
+                  <div class="product__panel-rate-wrap">
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                  </div>
 
-                <div class="product__panel-price">
-                    <span class="product__panel-price-old">
+                  <div class="product__panel-price">
+                      <span class="product__panel-price-old">
                         20.000đ
-                    </span>
-                    <span class="product__panel-price-current">
-                        ${price}
-                    </span>
-                </div>
+                      </span>
+                      <span class="product__panel-price-current">
+                          ${price}
+                      </span>
+                  </div>
 
-                <div class="product__panel-price-sale-off">
+                  <div class="product__panel-price-sale-off">
                     -11%
-                </div>
+                  </div>
+              </div>
             </div>
-        </div>
         `;
                 listMostSeller += `
             <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">

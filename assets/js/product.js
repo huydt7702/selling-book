@@ -1,26 +1,10 @@
-// tăng só trên ô giỏ hàng
-let pickBtn = document.getElementsByClassName("product__main-info-cart-btn")[0];
-let cartInfo = document.getElementsByClassName("header__notice")[0];
-pickBtn.onclick = function () {
-  let currentCount = Number(cartInfo.textContent);
-  currentCount++;
-  cartInfo.textContent = currentCount;
-};
+import "regenerator-runtime/runtime";
 
-/* let minusBtn = document.getElementsByClassName('product__main-info-cart-quantity-minus')[0];
-let plusBtn = document.getElementsByClassName('product__main-info-cart-quantity-plus')[0];
-var valueBtn = document.getElementsByClassName('product__main-info-cart-quantity-total')[0].value
-
-minusBtn.onclick() = function(){
-
-    valueBtn.textContent=  valueBtn--;
-}
-plusBtn.onclick() = function(){
-    valueBtn.textContent=  valueBtn++;
-}*/
+import FirebaseConstants from "../../app/constants/FirebaseConstants";
+import ProductService from "../../app/services/ProductService";
+import UrlHelper from "../../app/helpers/UrlHelper";
 
 // Phần gửi kiểm tra form
-
 let submitBtn = document.getElementById("formgroupcomment");
 submitBtn.onsubmit = function (event) {
   event.preventDefault();
@@ -29,7 +13,6 @@ submitBtn.onsubmit = function (event) {
   let contentIn = document.getElementById("formcontent");
 
   //kiểm tra xem có đủ 100 ký tự hay k
-
   if ($("textarea#formcontent").val().length < 100) {
     alert("Bạn phải nhập  trên 100 ký tự");
     return;
@@ -79,3 +62,93 @@ submitBtn.onsubmit = function (event) {
 </ul> `;
   reviewer.prepend(ul);
 };
+
+// ------------------------------------------
+
+$(document).ready(function () {
+  const productService = new ProductService(FirebaseConstants.RealTimeDB, "Token");
+
+  const url = location.href;
+  const urlHelper = new UrlHelper();
+
+  const id = urlHelper.readParam(url, "id");
+  const productInfoBlock = $(".productInfoBlock")[0];
+  const amountOrdersElement = $(".header__notice")[0];
+
+  const getAmountOrders = () => {
+    const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
+    amountOrdersElement.innerText = listProductInfo.length;
+  };
+
+  getAmountOrders();
+
+  productService.findById(id).then((data) => {
+    const { description, image, name, price } = data;
+
+    const productInfo = `
+    <div class="product__main-img col-lg-4 col-md-4 col-sm-12">
+    <div class="product__main-img-primary">
+      <img src=${image} />
+    </div>
+  </div>
+
+  <div class="product__main-info col-lg-8 col-md-8 col-sm-12">
+    <div class="product__main-info-breadcrumb">Trang chủ / Sản phẩm</div>
+
+    <a href="#" class="product__main-info-title">
+      <h2 class="product__main-info-heading">${name}</h2>
+    </a>
+
+    <div class="product__main-info-rate-wrap">
+      <i class="fas fa-star product__main-info-rate"></i>
+      <i class="fas fa-star product__main-info-rate"></i>
+      <i class="fas fa-star product__main-info-rate"></i>
+      <i class="fas fa-star product__main-info-rate"></i>
+      <i class="fas fa-star product__main-info-rate"></i>
+    </div>
+
+    <div class="product__main-info-price">
+      <span class="product__main-info-price-current"> ${price} </span>
+    </div>
+
+    <div class="product__main-info-description">
+      ${description}
+    </div>
+
+    <div class="product__main-info-cart">
+      <div class="product__main-info-cart-btn-wrap">
+        <button class="product__main-info-cart-btn">Thêm vào giỏ hàng</button>
+      </div>
+    </div>
+
+    <div class="product__main-info-contact">
+      <a href="#" class="product__main-info-contact-fb">
+        <i class="fab fa-facebook-f"></i>
+        Chat Facebook
+      </a>
+      <div class="product__main-info-contact-phone-wrap">
+        <div class="product__main-info-contact-phone-icon">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+
+        <div class="product__main-info-contact-phone">
+          <div class="product__main-info-contact-phone-title">Gọi điện tư vấn</div>
+          <div class="product__main-info-contact-phone-number">( 0352.860.701)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    `;
+    productInfoBlock.innerHTML = productInfo;
+
+    // Add product to cart
+    const btnAddToCartElement = $(".product__main-info-cart-btn")[0];
+    btnAddToCartElement.onclick = function () {
+      const prodInfo = { title: name, image, price };
+      const cart = JSON.parse(localStorage.getItem("cart")) ?? [];
+
+      localStorage.setItem("cart", JSON.stringify([...cart, prodInfo]));
+      getAmountOrders();
+    };
+  });
+});

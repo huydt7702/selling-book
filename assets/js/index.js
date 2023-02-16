@@ -2,10 +2,6 @@ import "regenerator-runtime/runtime";
 import FirebaseConstants from "../../app/constants/FirebaseConstants";
 import ProductService from "../../app/services/ProductService";
 
-setTimeout(function () {
-  location.reload();
-}, 60 * 1000);
-
 //Get the button
 var mybutton = document.getElementById("myBtn-scroll");
 
@@ -22,12 +18,6 @@ function scrollFunction() {
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-
 // -------------------------------------
 
 $(document).ready(function () {
@@ -36,7 +26,6 @@ $(document).ready(function () {
   const getAllProducts = async () => {
     try {
       const data = await productService.findAllProducts();
-
       const listProducts = $(".row.product__panel");
       const listBestseller = $(".list-bestseller");
 
@@ -49,35 +38,35 @@ $(document).ready(function () {
 
         list += `
             <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-            <div class="product__panel-item-wrap">
-                <div class="product__panel-img-wrap">
-                    <img height='100%' src=${image} alt=${name} class="product__panel-img">
-                </div>
-                <h3 class="product__panel-heading">
-                    <a href="product.html" class="product__panel-link">${name}</a>
-                </h3>
-                <div class="product__panel-rate-wrap">
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                    <i class="fas fa-star product__panel-rate"></i>
-                </div>
+              <div class="product__panel-item-wrap">
+                  <div class="product__panel-img-wrap">
+                      <img height='100%' src=${image} alt=${name} class="product__panel-img">
+                  </div>
+                  <h3 class="product__panel-heading">
+                      <a href="product.html?id=${key}" class="product__panel-link">${name}</a>
+                  </h3>
+                  <div class="product__panel-rate-wrap">
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                      <i class="fas fa-star product__panel-rate"></i>
+                  </div>
 
-                <div class="product__panel-price">
-                    <span class="product__panel-price-old">
+                  <div class="product__panel-price">
+                      <span class="product__panel-price-old">
                         20.000đ
-                    </span>
-                    <span class="product__panel-price-current">
-                        ${price}
-                    </span>
-                </div>
+                      </span>
+                      <span class="product__panel-price-current">
+                          ${price}
+                      </span>
+                  </div>
 
-                <div class="product__panel-price-sale-off">
+                  <div class="product__panel-price-sale-off">
                     -11%
-                </div>
+                  </div>
+              </div>
             </div>
-        </div>
         `;
 
         listMostSeller += `
