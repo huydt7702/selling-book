@@ -4,20 +4,18 @@ $(document).ready(function () {
   const listCartBlock = $(".listCartBlock")[0];
   const totalCartPriceElement = $(".totalCartPrice")[0];
   const amountOrdersElement = $(".header__notice")[0];
+  const listCart = JSON.parse(localStorage.getItem("cart")) ?? [];
 
   const getTotalPrice = () => {
-    const listCart = JSON.parse(localStorage.getItem("cart")) ?? [];
     const total = listCart.reduce((total, product) => total + Number(product.price), 0);
     totalCartPriceElement.innerText = total + " VNĐ";
   };
 
   const getAmountOrders = () => {
-    const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
-    amountOrdersElement.innerText = listProductInfo.length;
+    amountOrdersElement.innerText = listCart.length;
   };
 
   const renderListCart = () => {
-    const listCart = JSON.parse(localStorage.getItem("cart")) ?? [];
     const html = listCart
       .map((item, index) => {
         return `
@@ -53,10 +51,9 @@ $(document).ready(function () {
   const btnDeleteProduct = $(".btnDeleteProduct");
   for (let i = 0; i < btnDeleteProduct.length; i++) {
     btnDeleteProduct[i].onclick = function (e) {
-      const listCart = JSON.parse(localStorage.getItem("cart")) ?? [];
       const newListCart = listCart.filter((item, index) => index !== Number(e.target.dataset.id));
-
-      console.log(newListCart);
+      localStorage.setItem("cart", JSON.stringify(newListCart));
+      location.reload();
     };
   }
 });
