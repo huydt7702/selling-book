@@ -35,8 +35,12 @@
 }
 
 .menu__item--active .menu__link {
-  color: var(--primary-color);
-  fill: var(--primary-color);
+  color: var(--primary-color) !important;
+  fill: var(--primary-color) !important;
+}
+
+.menu__item--active .menu__link:hover {
+  background-color: #fff !important;
 }
 
 .menu__link {
