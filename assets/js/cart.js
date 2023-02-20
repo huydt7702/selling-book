@@ -1,4 +1,7 @@
 import "regenerator-runtime/runtime";
+import Order from "../../app/models/Order";
+import OrderService from "../../app/services/OrderService";
+import FirebaseConstants from "../../app/constants/FirebaseConstants";
 
 $(document).ready(function () {
   const listCartBlock = $(".listCartBlock")[0];
@@ -56,4 +59,38 @@ $(document).ready(function () {
       location.reload();
     };
   }
+
+  // Handle click button buy
+  const buyButton = $(".buyButton")[0];
+  buyButton.onclick = function (e) {
+    e.preventDefault();
+    const orderIdCrl = $("#orderId");
+    const nameCrl = $("#name").val();
+    const emailCrl = $("#email").val();
+    const phoneNumberCrl = $("#phoneNumber").val();
+    const addressCrl = $("#address").val();
+
+    // get current date
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}/${month}/${year}`;
+
+    const order = new Order(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
+    const orderService = new OrderService(FirebaseConstants.RealTimeDB, "Token");
+
+    try {
+      orderService.insertOrder(order).then((data) => {
+        orderIdCrl.val(data);
+
+        localStorage.removeItem("cart");
+        location.reload();
+
+        alert("Đặt hàng thành công, cảm ơn quý khách.");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 });

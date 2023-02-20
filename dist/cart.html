@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <script src="/listProducts.1aaf4dea.js"></script><script src="/cart.6ddb5ccd.js"></script>
+    <script src="/listProducts.43dd84a9.js"></script><script src="/cart.6ddb5ccd.js"></script>
     <!-- <script type="module" src="./assets/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="/cart.d1f2c8ba.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -174,16 +174,27 @@
           <span class="col-3 col-lg-3 col-sm-3 cart__foot-price">
             <div class="totalCartPrice" style="font-size: 30px">0</div>
             <br>
-
-            <button class="cart__foot-price-btn">Mua hàng</button>
           </span>
         </article>
+
+        <form style="flex-direction: column; align-items: flex-end; display: flex">
+          <input style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 20px" type="text" id="orderId" readonly="" aria-describedby="orderIdHelp" placeholder="ID">
+
+          <input style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 20px" type="text" id="name" aria-describedby="nameHelp" placeholder="Họ tên của bạn...">
+          <input style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 20px" type="email" id="email" aria-describedby="emailHelp" placeholder="Email của bạn...">
+
+          <input style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 20px" type="number" id="phoneNumber" aria-describedby="phoneNumberHelp" placeholder="Số điện thoại...">
+
+          <input style="width: 100%; margin-bottom: 10px; padding: 10px; font-size: 20px" type="text" id="address" aria-describedby="addressHelp" placeholder="Địa chỉ của bạn...">
+
+          <button class="buyButton cart__foot-price-btn">Mua hàng</button>
+        </form>
       </div>
     </section>
     <!--end cart -->
 
     <!-- footer -->
-    <footer>
+    <footer style="margin-top: 20px">
       <section class="footer__top">
         <div class="container">
           <div class="row">
