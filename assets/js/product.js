@@ -144,7 +144,7 @@ $(document).ready(function () {
     // Add product to cart
     const btnAddToCartElement = $(".product__main-info-cart-btn")[0];
     btnAddToCartElement.onclick = function () {
-      const prodInfo = { title: name, image, price };
+      const prodInfo = { title: name, image, price, id };
       const cart = JSON.parse(localStorage.getItem("cart")) ?? [];
 
       localStorage.setItem("cart", JSON.stringify([...cart, prodInfo]));

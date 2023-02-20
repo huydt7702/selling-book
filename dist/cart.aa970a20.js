@@ -565,6 +565,10 @@ var _orderService = require("../../app/services/OrderService");
 var _orderServiceDefault = parcelHelpers.interopDefault(_orderService);
 var _firebaseConstants = require("../../app/constants/FirebaseConstants");
 var _firebaseConstantsDefault = parcelHelpers.interopDefault(_firebaseConstants);
+var _orderDetails = require("../../app/models/OrderDetails");
+var _orderDetailsDefault = parcelHelpers.interopDefault(_orderDetails);
+var _orderDetailsService = require("../../app/services/OrderDetailsService");
+var _orderDetailsServiceDefault = parcelHelpers.interopDefault(_orderDetailsService);
 $(document).ready(function() {
     const listCartBlock = $(".listCartBlock")[0];
     const totalCartPriceElement = $(".totalCartPrice")[0];
@@ -573,6 +577,7 @@ $(document).ready(function() {
     const getTotalPrice = ()=>{
         const total = listCart.reduce((total, product)=>total + Number(product.price), 0);
         totalCartPriceElement.innerText = total + " VNĐ";
+        return total;
     };
     const getAmountOrders = ()=>{
         amountOrdersElement.innerText = listCart.length;
@@ -629,9 +634,15 @@ $(document).ready(function() {
         let currentDate = `${day}/${month}/${year}`;
         const order = new (0, _orderDefault.default)(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
         const orderService = new (0, _orderServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+        const orderDetailsService = new (0, _orderDetailsServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
         try {
             orderService.insertOrder(order).then((data)=>{
                 orderIdCrl.val(data);
+                const productIds = listCart.map((item)=>item.id);
+                const orderDetails = new (0, _orderDetailsDefault.default)(null, data, productIds, listCart.length, getTotalPrice());
+                orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId)=>{
+                    console.log(orderDetailsId);
+                });
                 localStorage.removeItem("cart");
                 location.reload();
                 alert("Đặt h\xe0ng th\xe0nh c\xf4ng, cảm ơn qu\xfd kh\xe1ch.");
@@ -642,7 +653,7 @@ $(document).ready(function() {
     };
 });
 
-},{"regenerator-runtime/runtime":"dXNgZ","../../app/models/Order":"hj2s5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/services/OrderService":"dPfIm","../../app/constants/FirebaseConstants":"ar8Y5"}],"hj2s5":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"dXNgZ","../../app/models/Order":"hj2s5","../../app/services/OrderService":"dPfIm","../../app/constants/FirebaseConstants":"ar8Y5","../../app/models/OrderDetails":"5hoAm","../../app/services/OrderDetailsService":"bxuSd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hj2s5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class Category {
@@ -691,6 +702,55 @@ class OrderService {
     };
 }
 exports.default = OrderService;
+
+},{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5hoAm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class OrderDetails {
+    constructor(orderDetailsId, orderId, productIds, quantity, unitPrice){
+        this.orderDetailsId = orderDetailsId;
+        this.orderId = orderId;
+        this.productIds = productIds;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+}
+exports.default = OrderDetails;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bxuSd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+class OrderDetailsService {
+    constructor(realtimeDb, accessToken){
+        this.collectionName = "order_details.json";
+        this.realtimeDb = realtimeDb;
+        this.accessToken = accessToken;
+    }
+    insertOrderDetails = async (entity)=>{
+        const response = await (0, _axiosDefault.default).post(this.realtimeDb + this.collectionName, entity);
+        const insertedId = await response.data.name;
+        return insertedId;
+    };
+    updateCategory = async (id, entity)=>{
+        const response = await (0, _axiosDefault.default).put(`${this.realtimeDb}categories/${id}.json`, entity);
+        return response.data;
+    };
+    deleteCategory = async (id)=>{
+        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}categories/${id}.json`);
+        return response.data;
+    };
+    findById = async (id)=>{
+        const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}categories/${id}.json`);
+        return response.data;
+    };
+    findAllCategories = async (entity)=>{
+        const response = await (0, _axiosDefault.default).get(this.realtimeDb + this.collectionName);
+        return response.data;
+    };
+}
+exports.default = OrderDetailsService;
 
 },{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["d7gBe","8AzaF"], "8AzaF", "parcelRequire5df1")
 

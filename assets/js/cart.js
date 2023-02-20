@@ -2,6 +2,8 @@ import "regenerator-runtime/runtime";
 import Order from "../../app/models/Order";
 import OrderService from "../../app/services/OrderService";
 import FirebaseConstants from "../../app/constants/FirebaseConstants";
+import OrderDetails from "../../app/models/OrderDetails";
+import OrderDetailsService from "../../app/services/OrderDetailsService";
 
 $(document).ready(function () {
   const listCartBlock = $(".listCartBlock")[0];
@@ -12,6 +14,8 @@ $(document).ready(function () {
   const getTotalPrice = () => {
     const total = listCart.reduce((total, product) => total + Number(product.price), 0);
     totalCartPriceElement.innerText = total + " VNĐ";
+
+    return total;
   };
 
   const getAmountOrders = () => {
@@ -79,10 +83,17 @@ $(document).ready(function () {
 
     const order = new Order(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
     const orderService = new OrderService(FirebaseConstants.RealTimeDB, "Token");
+    const orderDetailsService = new OrderDetailsService(FirebaseConstants.RealTimeDB, "Token");
 
     try {
       orderService.insertOrder(order).then((data) => {
         orderIdCrl.val(data);
+
+        const productIds = listCart.map((item) => item.id);
+        const orderDetails = new OrderDetails(null, data, productIds, listCart.length, getTotalPrice());
+        orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId) => {
+          console.log(orderDetailsId);
+        });
 
         localStorage.removeItem("cart");
         location.reload();

@@ -687,7 +687,8 @@ $(document).ready(function() {
             const prodInfo = {
                 title: name,
                 image,
-                price
+                price,
+                id
             };
             const cart = JSON.parse(localStorage.getItem("cart")) ?? [];
             localStorage.setItem("cart", JSON.stringify([
