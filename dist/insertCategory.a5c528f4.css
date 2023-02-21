@@ -1,0 +1,22 @@
+.sidebar-nav {
+  padding-left: 0;
+  list-style: none;
+}
+
+.sidebar-item {
+  padding: 8px;
+}
+
+.sidebar-item a {
+  text-decoration: none;
+}
+
+.sidebar-item.active {
+  background-color: #4293ff;
+}
+
+.sidebar-item.active a {
+  color: #fff;
+}
+
+/*# sourceMappingURL=insertCategory.a5c528f4.css.map */

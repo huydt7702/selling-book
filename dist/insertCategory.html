@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head><script src="/listProducts.43dd84a9.js"></script>
+  <head><script src="/listProducts.922fb2f2.js"></script>
     <title>Add Category</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,11 +8,53 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/insertCategory.a5c528f4.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
+      <!-- NavBar -->
       <section class="row">
         <div class="col">
+          <nav style="background-color: #ff002a" class="navbar navbar-expand-md navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="row" style="margin-top: 56px">
+        <div class="col-sm-2" style="padding: 0">
+          <nav class="sidebar">
+            <ul class="sidebar-nav">
+              <li class="sidebar-item">
+                <a href="/listProducts.html">
+                  <span>Quản lý sản phẩm</span>
+                </a>
+              </li>
+              <li class="sidebar-item active">
+                <a href="/listCategories.html">
+                  <span>Quản lý danh mục</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="/listOrders.html">
+                  <span>Quản lý đơn hàng</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="#">
+                  <span>Thống kê</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="/index.html">
+                  <span>Trở về trang chủ client</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-sm-10" style="background-color: #f1f4f7">
           <div class="card">
             <div class="card-header">Insert Category</div>
             <div class="card-body">

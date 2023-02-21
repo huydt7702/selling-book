@@ -585,7 +585,7 @@ $(document).ready(function() {
             <td>${price}</td>
             <td>${description}</td>
             <td><img src=${image} alt="Product width="80px" height="80px" /></td>
-            <td>
+            <td style="width: 150px;">
               <a style="color: blue" href="editProduct.html?id=${key}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a> |
               <a style="color: red" href="deleteProduct.html?id=${key}"><i class="fa fa-trash" aria-hidden="true"></i> Delete </a>
             </td>

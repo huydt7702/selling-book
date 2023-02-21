@@ -1,0 +1,20 @@
+.sidebar-nav {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-item {
+  padding: 8px;
+}
+
+.sidebar-item a {
+  text-decoration: none;
+}
+
+.sidebar-item.active {
+  background-color: #4293ff;
+}
+
+.sidebar-item.active a {
+  color: #fff;
+}
