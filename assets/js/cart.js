@@ -31,7 +31,7 @@ $(document).ready(function () {
           <div class="cart__body-name-img">
             <img src=${item.image} />
           </div>
-          <a href="" style="margin-left: 10px;" class="cart__body-name-title"> ${item.title} </a>
+          <a href="product.html?id=${item.id}" style="margin-left: 10px;" class="cart__body-name-title"> ${item.title} </a>
         </div>
         <div class="col-3 cart__body-quantity">
           <input type="button" value="-" class="cart__body-quantity-minus" />
