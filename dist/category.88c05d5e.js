@@ -557,6 +557,13 @@ function hmrAccept(bundle, id) {
 }
 
 },{}],"bbLvv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _firebaseConstants = require("../../app/constants/FirebaseConstants");
+var _firebaseConstantsDefault = parcelHelpers.interopDefault(_firebaseConstants);
+var _categoryService = require("../../app/services/CategoryService");
+var _categoryServiceDefault = parcelHelpers.interopDefault(_categoryService);
+var _productService = require("../../app/services/ProductService");
+var _productServiceDefault = parcelHelpers.interopDefault(_productService);
 // lọc sản phẩm theo tên
 let catSelect = document.getElementById("categorySelect");
 let nameSelect = document.getElementById("productNameSelect");
@@ -600,13 +607,213 @@ headernavSearch.ondbclick = function() {
 };
 // tạm thời chưa chạy , có thời gian sẽ sửa sau
 // ---------------------------------------------
-const amountOrdersElement = $(".header__notice")[0];
-const getAmountOrders = ()=>{
-    const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
-    amountOrdersElement.innerText = listProductInfo.length;
-};
-getAmountOrders();
+$(document).ready(function() {
+    const amountOrdersElement = $(".header__notice")[0];
+    const getAmountOrders = ()=>{
+        const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
+        amountOrdersElement.innerText = listProductInfo.length;
+    };
+    getAmountOrders();
+    const categoryService = new (0, _categoryServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+    const productService = new (0, _productServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+    try {
+        const fetchApi = async ()=>{
+            const allProducts = await productService.findAllProducts();
+            const allCategories = await categoryService.findAllCategories();
+            const vietnameseBookBlock = $(".vietnameseBookBlock");
+            let vietnameseBookList = "";
+            const foreignBookBlock = $(".foreignBookBlock");
+            let foreignBookList = "";
+            const mangaBookBlock = $(".mangaBookBlock");
+            let mangaBookList = "";
+            for(const key in allCategories){
+                const { name  } = allCategories[key];
+                for(const productKey in allProducts){
+                    const { categoryId , image , price , name: productName  } = allProducts[productKey];
+                    if (key === categoryId && name === "S\xe1ch Tiếng Việt") vietnameseBookList += `
+            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+            <div class="product__panel-img-wrap">
+                <img src=${image} alt=${productName} class="product__panel-img">
+            </div>
+            <h3 class="product__panel-heading">
+                <a href="product.html?id=${productKey}"  class="product__panel-link">${productName}</a>
+            </h3>
+            <div class="product__panel-rate-wrap">
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+            </div>
 
-},{}]},["7ozmF","bbLvv"], "bbLvv", "parcelRequire5df1")
+            <div class="product__panel-price">
+                <span class="product__panel-price-old product__panel-price-old-hide">
+                    80.000đ
+                </span>
+                <span class="product__panel-price-current">
+                    ${price}
+                </span>
+            </div>  
+        </div>
+            `;
+                    if (key === categoryId && name === "S\xe1ch Nước Ngo\xe0i") foreignBookList += `
+            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+            <div class="product__panel-img-wrap">
+                <img src=${image} alt=${productName} class="product__panel-img" style="height: 100%">
+            </div>
+            <h3 class="product__panel-heading">
+                <a href="product.html?id=${productKey}"  class="product__panel-link">${productName}</a>
+            </h3>
+            <div class="product__panel-rate-wrap">
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+            </div>
+
+            <div class="product__panel-price">
+                <span class="product__panel-price-old product__panel-price-old-hide">
+                    80.000đ
+                </span>
+                <span class="product__panel-price-current">
+                    ${price}
+                </span>
+            </div>  
+        </div>
+            `;
+                    if (key === categoryId && name === "Manga - Comics") mangaBookList += `
+            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+            <div class="product__panel-img-wrap">
+                <img src=${image} alt=${productName} class="product__panel-img" style="height: 100%">
+            </div>
+            <h3 class="product__panel-heading">
+                <a href="product.html?id=${productKey}"  class="product__panel-link">${productName}</a>
+            </h3>
+            <div class="product__panel-rate-wrap">
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+            </div>
+
+            <div class="product__panel-price">
+                <span class="product__panel-price-old product__panel-price-old-hide">
+                    80.000đ
+                </span>
+                <span class="product__panel-price-current">
+                    ${price}
+                </span>
+            </div>  
+        </div>
+            `;
+                }
+            }
+            vietnameseBookBlock.append(vietnameseBookList);
+            foreignBookBlock.append(foreignBookList);
+            mangaBookBlock.append(mangaBookList);
+        };
+        fetchApi();
+    } catch (error) {
+        console.log(error);
+    }
+// try {
+//   categoryService.findAllCategories().then((data) => {
+//     const placeholder = $(".listProductsByCategory");
+//     let list = "";
+//     for (const key in data) {
+//       const element = data[key];
+//       const { name } = element;
+//       console.log(element);
+//       // list += `
+//       //   <tr>
+//       //     <td>${key}</td>
+//       //     <td>${name}</td>
+//       //     <td>
+//       //       <a style="color: blue" href="editCategory.html?id=${key}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a> |
+//       //       <a style="color: red" href="deleteCategory.html?id=${key}"><i class="fa fa-trash" aria-hidden="true"></i> Delete </a>
+//       //     </td>
+//       //   </tr>
+//       // `;
+//     }
+//     // placeholder.append(list);
+//   });
+// } catch (error) {
+//   console.log(error);
+// }
+});
+
+},{"../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/CategoryService":"1bIMI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/services/ProductService":"63Op7"}],"1bIMI":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+class CategoryService {
+    constructor(realtimeDb, accessToken){
+        this.collectionName = "categories.json";
+        this.realtimeDb = realtimeDb;
+        this.accessToken = accessToken;
+    }
+    insertCategory = async (entity)=>{
+        const response = await (0, _axiosDefault.default).post(this.realtimeDb + this.collectionName, entity);
+        const insertedId = await response.data.name;
+        return insertedId;
+    };
+    updateCategory = async (id, entity)=>{
+        const response = await (0, _axiosDefault.default).put(`${this.realtimeDb}categories/${id}.json`, entity);
+        return response.data;
+    };
+    deleteCategory = async (id)=>{
+        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}categories/${id}.json`);
+        return response.data;
+    };
+    findById = async (id)=>{
+        const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}categories/${id}.json`);
+        return response.data;
+    };
+    findAllCategories = async (entity)=>{
+        const response = await (0, _axiosDefault.default).get(this.realtimeDb + this.collectionName);
+        return response.data;
+    };
+}
+exports.default = CategoryService;
+
+},{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"63Op7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+class ProductService {
+    constructor(realtimeDb, accessToken){
+        this.collectionName = "products.json";
+        this.realtimeDb = realtimeDb;
+        this.accessToken = accessToken;
+    }
+    insertProduct = async (entity)=>{
+        const response = await (0, _axiosDefault.default).post(this.realtimeDb + this.collectionName, entity);
+        const insertedId = await response.data.name;
+        return insertedId;
+    };
+    updateProduct = async (id, entity)=>{
+        const response = await (0, _axiosDefault.default).put(`${this.realtimeDb}products/${id}.json`, entity);
+        return response.data;
+    };
+    deleteProduct = async (id)=>{
+        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}products/${id}.json`);
+        return response.data;
+    };
+    findById = async (id)=>{
+        const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}products/${id}.json`);
+        return response.data;
+    };
+    findAllProducts = async (entity)=>{
+        const response = await (0, _axiosDefault.default).get(this.realtimeDb + this.collectionName);
+        return response.data;
+    };
+}
+exports.default = ProductService;
+
+},{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["7ozmF","bbLvv"], "bbLvv", "parcelRequire5df1")
 
 //# sourceMappingURL=category.88c05d5e.js.map
