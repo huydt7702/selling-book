@@ -128,6 +128,7 @@ $(document).ready(function () {
   const url = location.href;
   const urlHelper = new UrlHelper();
   const cateId = urlHelper.readParam(url, "cateId");
+  const priceOnUrl = urlHelper.readParam(url, "price");
   const categoryService = new CategoryService(FirebaseConstants.RealTimeDB, "Token");
 
   const renderCategories = async () => {
@@ -135,8 +136,13 @@ $(document).ready(function () {
       const data = await categoryService.findAllCategories();
       const listCategories = $(".menu__list");
       let list = `
-      <li class="menu__item">
-        <input type="text" />
+      <li class="menu__item hover-background-color-none" style="display: flex;align-items: center; margin: 20px 0; background-color: #fff; border-radius: 999px; border: 1px solid #ef2317">
+        <input type="number" class="inputSearchPrice" placeholder="Tìm kiếm sản phẩm theo giá" style="border-radius: 999px;flex: 1;padding: 4px 16px; font-size: 14px; outline: none; border: none;"/> 
+        <a class="searchPriceBtn" style="color:#000;cursor: pointer; padding: 8px 10px; background-color: #fff; border-top-right-radius: 999px;border-bottom-right-radius: 999px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </a>
       </li>
       `;
 
@@ -155,6 +161,11 @@ $(document).ready(function () {
           `;
       }
       listCategories.append(list);
+
+      $(".searchPriceBtn").on("click", () => {
+        const searchPriceBtn = $(".searchPriceBtn")[0];
+        searchPriceBtn.href = `index.html?price=${$(".inputSearchPrice").val()}`;
+      });
     } catch (error) {
       console.log(error);
     }
@@ -170,6 +181,39 @@ $(document).ready(function () {
       const product = allProducts[key];
 
       if (product.categoryId === cateId) {
+        listProductsByCategory += `
+        <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
+        <div class="product__panel-item-wrap">
+            <div class="product__panel-img-wrap">
+                <img height='100%' src=${product.image} alt=${product.name} class="product__panel-img">
+            </div>
+            <h3 class="product__panel-heading">
+                <a href="product.html?id=${key}" class="product__panel-link">${product.name}</a>
+            </h3>
+            <div class="product__panel-rate-wrap">
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+                <i class="fas fa-star product__panel-rate"></i>
+            </div>
+
+            <div class="product__panel-price">
+                <span class="product__panel-price-old">
+                  20.000đ
+                </span>
+                <span class="product__panel-price-current">
+                    ${product.price}
+                </span>
+            </div>
+
+            <div class="product__panel-price-sale-off">
+              -11%
+            </div>
+        </div>
+      </div>
+        `;
+      } else if (Number(product.price) <= Number(priceOnUrl)) {
         listProductsByCategory += `
         <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
         <div class="product__panel-item-wrap">

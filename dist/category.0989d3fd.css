@@ -733,4 +733,8 @@ section.product__love {
   fill: #ccc;
 }
 
+.hover-background-color-none:hover {
+  background-color: unset;
+}
+
 /*# sourceMappingURL=category.0989d3fd.css.map */

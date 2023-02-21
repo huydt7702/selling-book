@@ -807,3 +807,7 @@ section.product__love {
 .sale-off__close-icon {
   fill: #ccc;
 }
+
+.hover-background-color-none:hover {
+  background-color: unset;
+}
