@@ -19,8 +19,8 @@ class OrderService {
     return response.data;
   };
 
-  deleteCategory = async (id) => {
-    const response = await axios.delete(`${this.realtimeDb}categories/${id}.json`);
+  deleteOrder = async (id) => {
+    const response = await axios.delete(`${this.realtimeDb}orders/${id}.json`);
     return response.data;
   };
 
@@ -29,7 +29,7 @@ class OrderService {
     return response.data;
   };
 
-  findAllCategories = async (entity) => {
+  findAllOrders = async (entity) => {
     const response = await axios.get(this.realtimeDb + this.collectionName);
     return response.data;
   };

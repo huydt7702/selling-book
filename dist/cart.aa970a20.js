@@ -688,15 +688,15 @@ class OrderService {
         const response = await (0, _axiosDefault.default).put(`${this.realtimeDb}categories/${id}.json`, entity);
         return response.data;
     };
-    deleteCategory = async (id)=>{
-        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}categories/${id}.json`);
+    deleteOrder = async (id)=>{
+        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}orders/${id}.json`);
         return response.data;
     };
     findById = async (id)=>{
         const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}categories/${id}.json`);
         return response.data;
     };
-    findAllCategories = async (entity)=>{
+    findAllOrders = async (entity)=>{
         const response = await (0, _axiosDefault.default).get(this.realtimeDb + this.collectionName);
         return response.data;
     };
@@ -737,15 +737,15 @@ class OrderDetailsService {
         const response = await (0, _axiosDefault.default).put(`${this.realtimeDb}categories/${id}.json`, entity);
         return response.data;
     };
-    deleteCategory = async (id)=>{
-        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}categories/${id}.json`);
+    deleteOrderDetails = async (id)=>{
+        const response = await (0, _axiosDefault.default).delete(`${this.realtimeDb}order_details/${id}.json`);
         return response.data;
     };
     findById = async (id)=>{
-        const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}categories/${id}.json`);
+        const response = await (0, _axiosDefault.default).get(`${this.realtimeDb}order_details/${id}.json`);
         return response.data;
     };
-    findAllCategories = async (entity)=>{
+    findAllOrderDetails = async (entity)=>{
         const response = await (0, _axiosDefault.default).get(this.realtimeDb + this.collectionName);
         return response.data;
     };

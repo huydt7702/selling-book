@@ -134,7 +134,11 @@ $(document).ready(function () {
     try {
       const data = await categoryService.findAllCategories();
       const listCategories = $(".menu__list");
-      let list = "";
+      let list = `
+      <li class="menu__item">
+        <input type="text" />
+      </li>
+      `;
 
       for (const key in data) {
         const element = data[key];

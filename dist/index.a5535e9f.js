@@ -685,7 +685,11 @@ $(document).ready(function() {
         try {
             const data = await categoryService.findAllCategories();
             const listCategories = $(".menu__list");
-            let list = "";
+            let list = `
+      <li class="menu__item">
+        <input type="text" />
+      </li>
+      `;
             for(const key in data){
                 const element = data[key];
                 const { name  } = element;
@@ -793,7 +797,7 @@ $(document).ready(function() {
     renderProductsByCategory();
 });
 
-},{"regenerator-runtime/runtime":"dXNgZ","../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/ProductService":"63Op7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../app/services/CategoryService":"1bIMI","../../app/helpers/UrlHelper":"9C87C","../images1/banner/363488_final1511.jpg":"cLcx1","../images1/banner/Gold_DongA_600X350.jpg":"gZLqH","../images1/banner/megabook-glod600X350.png":"Utgcp","../images1/banner/363107_05.jpg":"Ifv2n","../images1/banner/363104_06.jpg":"7MYU3","../images1/banner/slider-right.png":"8UKFy"}],"63Op7":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"dXNgZ","../../app/constants/FirebaseConstants":"ar8Y5","../../app/services/ProductService":"63Op7","../../app/services/CategoryService":"1bIMI","../../app/helpers/UrlHelper":"9C87C","../images1/banner/363488_final1511.jpg":"cLcx1","../images1/banner/Gold_DongA_600X350.jpg":"gZLqH","../images1/banner/megabook-glod600X350.png":"Utgcp","../images1/banner/363107_05.jpg":"Ifv2n","../images1/banner/363104_06.jpg":"7MYU3","../images1/banner/slider-right.png":"8UKFy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"63Op7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _axios = require("axios");

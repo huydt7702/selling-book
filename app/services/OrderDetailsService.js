@@ -19,17 +19,17 @@ class OrderDetailsService {
     return response.data;
   };
 
-  deleteCategory = async (id) => {
-    const response = await axios.delete(`${this.realtimeDb}categories/${id}.json`);
+  deleteOrderDetails = async (id) => {
+    const response = await axios.delete(`${this.realtimeDb}order_details/${id}.json`);
     return response.data;
   };
 
   findById = async (id) => {
-    const response = await axios.get(`${this.realtimeDb}categories/${id}.json`);
+    const response = await axios.get(`${this.realtimeDb}order_details/${id}.json`);
     return response.data;
   };
 
-  findAllCategories = async (entity) => {
+  findAllOrderDetails = async (entity) => {
     const response = await axios.get(this.realtimeDb + this.collectionName);
     return response.data;
   };
