@@ -82,6 +82,10 @@ $(document).ready(function () {
 
   getAmountOrders();
 
+  const formatPrice = (number) => {
+    return new Intl.NumberFormat().format(number);
+  };
+
   productService.findById(id).then((data) => {
     const { description, image, name, price } = data;
 
@@ -108,7 +112,7 @@ $(document).ready(function () {
     </div>
 
     <div class="product__main-info-price">
-      <span class="product__main-info-price-current"> ${price} VNĐ</span>
+      <span class="product__main-info-price-current"> ${formatPrice(price)} VNĐ</span>
     </div>
 
     <div class="product__main-info-description">
