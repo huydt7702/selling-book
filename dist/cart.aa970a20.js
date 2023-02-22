@@ -576,11 +576,14 @@ $(document).ready(function() {
     const listCart = JSON.parse(localStorage.getItem("cart")) ?? [];
     const getTotalPrice = ()=>{
         const total = listCart.reduce((total, product)=>total + Number(product.price), 0);
-        totalCartPriceElement.innerText = total + " VNĐ";
+        totalCartPriceElement.innerText = formatPrice(total) + " VNĐ";
         return total;
     };
     const getAmountOrders = ()=>{
         amountOrdersElement.innerText = listCart.length;
+    };
+    const formatPrice = (number)=>{
+        return new Intl.NumberFormat().format(number);
     };
     const renderListCart = ()=>{
         const html = listCart.map((item, index)=>{
@@ -598,7 +601,7 @@ $(document).ready(function() {
           <input type="button" value="+" class="cart__body-quantity-plus" />
         </div>
         <div class="col-3 cart__body-price">
-          <span>${item.price} VNĐ</span>
+          <span>${formatPrice(item.price)} VNĐ</span>
 
           <a style="color: #fff; cursor: pointer;" class="btnDeleteProduct" data-id=${index}>Xóa</a>
         </div>

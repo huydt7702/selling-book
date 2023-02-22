@@ -561,8 +561,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _runtime = require("regenerator-runtime/runtime");
 var _firebaseConstants = require("./constants/FirebaseConstants");
 var _firebaseConstantsDefault = parcelHelpers.interopDefault(_firebaseConstants);
-var _category = require("./models/Category");
-var _categoryDefault = parcelHelpers.interopDefault(_category);
 var _categoryService = require("./services/CategoryService");
 var _categoryServiceDefault = parcelHelpers.interopDefault(_categoryService);
 $(document).ready(function() {
@@ -592,18 +590,7 @@ $(document).ready(function() {
     }
 });
 
-},{"regenerator-runtime/runtime":"dXNgZ","./constants/FirebaseConstants":"ar8Y5","./models/Category":"fOVWS","./services/CategoryService":"1bIMI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fOVWS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class Category {
-    constructor(categoryId, name){
-        this.categoryId = categoryId;
-        this.name = name;
-    }
-}
-exports.default = Category;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1bIMI":[function(require,module,exports) {
+},{"regenerator-runtime/runtime":"dXNgZ","./constants/FirebaseConstants":"ar8Y5","./services/CategoryService":"1bIMI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1bIMI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _axios = require("axios");

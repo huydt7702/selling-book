@@ -1,7 +1,6 @@
 import "regenerator-runtime/runtime";
 
 import FirebaseConstants from "./constants/FirebaseConstants";
-import Category from "./models/Category";
 import CategoryService from "./services/CategoryService";
 
 $(document).ready(function () {

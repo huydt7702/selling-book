@@ -2650,7 +2650,7 @@
 88/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/scss/_icons.scss1676424032638864582 0
 90/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/chrome-trace-event/LICENSE.txt1675992045774856928 0
 107/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/svgs/solid/hand-holding-medical.svg1676424033578661524 0
-82/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listCategories.79923fb5.js.map1676975284968927719 0
+82/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listCategories.79923fb5.js.map1676989513904933601 0
 82/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listCategories.6a5281b8.js.map1676166754160368789 0
 109/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/caniuse-lite/data/features/css-scroll-timeline.js1675992047262926746 0
 95/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/node-addon-api/package-support.json1675992046690899893 0
@@ -2746,7 +2746,7 @@
 67/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/js/product.js1676870899135077276 0
 100/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/css-tree/lib/syntax/node/TypeSelector.js1675992047134920733 0
 86/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/yaml/browser/dist/types.js1675992046730901770 0
-51/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist1676978134491390791 1
+51/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist1676989513904933601 1
 95/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/svgs/solid/umbrella.svg1676424034050559578 0
 107/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/600my-hero-academia-hoc-vien-sieu-anh-hung.116f94a0.jpg1676975284312869866 0
 107/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/svgs/regular/caret-square-right.svg1676424033102764337 0
@@ -2827,7 +2827,7 @@
 100/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/webfonts/fa-brands-400.woff21676424034170533667 0
 92/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/svgs/solid/hotel.svg1676424033622652020 0
 81/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/ordered-binary/assets1675992046398886193 1
-78/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listCategories.79923fb5.js1676975284952926308 0
+78/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listCategories.79923fb5.js1676989513860930812 0
 71/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/images/tiktok.png1676422856367386216 0
 121/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/@parcel/package-manager/test/validateModuleSpecifiers.test.js1675992050243066938 0
 76/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/images1/item/manga.png1676422868241230653 0
@@ -3228,7 +3228,7 @@
 91/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/css/svg-with-js.css1676424032554882730 0
 91/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/caniuse-lite/data/regions/BB.js1675992046942911718 0
 123/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/@parcel/node-resolver-core/test/fixture/node_modules/foo/bar.js1675992050651086172 0
-68/home/huydt772/Workspace/fpt/ecamscript/ecshop/app/listCategories.js1675994966304375363 0
+68/home/huydt772/Workspace/fpt/ecamscript/ecshop/app/listCategories.js1676989513704920922 0
 101/home/huydt772/Workspace/fpt/ecamscript/ecshop/assets/fonts/fontawesome/svgs/regular/hand-pointer.svg1676424033150753970 0
 76/home/huydt772/Workspace/fpt/ecamscript/ecshop/dist/listProducts.43dd84a9.js1676943478469845935 0
 90/home/huydt772/Workspace/fpt/ecamscript/ecshop/node_modules/css-what/lib/es/parse.d.ts.map1675992046102872305 0

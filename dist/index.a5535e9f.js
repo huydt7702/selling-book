@@ -597,6 +597,9 @@ $(document).ready(function() {
         const listProductInfo = JSON.parse(localStorage.getItem("cart")) ?? [];
         amountOrdersElement.innerText = listProductInfo.length;
     };
+    const formatPrice = (number)=>{
+        return new Intl.NumberFormat().format(number);
+    };
     const getAllProducts = async ()=>{
         try {
             const data = await productService.findAllProducts();
@@ -629,7 +632,7 @@ $(document).ready(function() {
                         20.000đ
                       </span>
                       <span class="product__panel-price-current">
-                          ${price}
+                          ${formatPrice(price)}đ
                       </span>
                   </div>
 
@@ -658,7 +661,7 @@ $(document).ready(function() {
                 </div>
 
                 <span class="bestselling__product-price">
-                    ${price}
+                    ${formatPrice(price)}đ
                 </span>
 
                 <div class="bestselling__product-btn-wrap">
@@ -747,7 +750,7 @@ $(document).ready(function() {
                   20.000đ
                 </span>
                 <span class="product__panel-price-current">
-                    ${product.price}
+                    ${formatPrice(product.price)}đ
                 </span>
             </div>
 
@@ -779,7 +782,7 @@ $(document).ready(function() {
                   20.000đ
                 </span>
                 <span class="product__panel-price-current">
-                    ${product.price}
+                    ${formatPrice(product.price)}đ
                 </span>
             </div>
 

@@ -626,6 +626,9 @@ $(document).ready(function() {
             let foreignBookList = "";
             const mangaBookBlock = $(".mangaBookBlock");
             let mangaBookList = "";
+            const formatPrice = (number)=>{
+                return new Intl.NumberFormat().format(number);
+            };
             for(const key in allCategories){
                 const { name  } = allCategories[key];
                 for(const productKey in allProducts){
@@ -651,7 +654,7 @@ $(document).ready(function() {
                     80.000đ
                 </span>
                 <span class="product__panel-price-current">
-                    ${price}
+                    ${formatPrice(price)} VNĐ
                 </span>
             </div>  
         </div>
@@ -677,7 +680,7 @@ $(document).ready(function() {
                     80.000đ
                 </span>
                 <span class="product__panel-price-current">
-                    ${price}
+                    ${formatPrice(price)} VNĐ
                 </span>
             </div>  
         </div>
@@ -703,7 +706,7 @@ $(document).ready(function() {
                     80.000đ
                 </span>
                 <span class="product__panel-price-current">
-                    ${price}
+                    ${formatPrice(price)} VNĐ
                 </span>
             </div>  
         </div>
