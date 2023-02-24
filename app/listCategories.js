@@ -20,7 +20,7 @@ $(document).ready(function () {
             <td>${name}</td>
             <td>
               <a style="color: blue" href="editCategory.html?id=${key}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit </a> |
-              <a style="color: red" href="deleteCategory.html?id=${key}"><i class="fa fa-trash" aria-hidden="true"></i> Delete </a>
+              <a style="color: red" href="deleteCategory.html?id=${key}" onclick="return confirm('Bạn có muốn xóa danh mục này không?')"><i class="fa fa-trash" aria-hidden="true"></i> Delete </a>
             </td>
           </tr>
         `;

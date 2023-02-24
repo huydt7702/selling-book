@@ -592,7 +592,7 @@ $(document).ready(function() {
               <td>${quantity}</td>
               <td>${unitPrice} VNĐ</td>
               <td>
-                <a style="color: red" href="deleteOrder.html?orderId=${orderId}&orderDetailsId=${key}"><i class="fa fa-pencil" aria-hidden="true"></i> Xóa đơn hàng </a>
+                <a style="color: red" href="deleteOrder.html?orderId=${orderId}&orderDetailsId=${key}" onclick="return confirm('Bạn có muốn xóa đơn hàng này không?')"><i class="fa fa-pencil" aria-hidden="true"></i> Xóa đơn hàng </a>
               </td>
             </tr>
         `;
