@@ -624,34 +624,37 @@ $(document).ready(function() {
     const buyButton = $(".buyButton")[0];
     buyButton.onclick = function(e) {
         e.preventDefault();
-        const orderIdCrl = $("#orderId");
-        const nameCrl = $("#name").val();
-        const emailCrl = $("#email").val();
-        const phoneNumberCrl = $("#phoneNumber").val();
-        const addressCrl = $("#address").val();
-        // get current date
-        const date = new Date();
-        let day = date.getDate();
-        let month = date.getMonth() + 1;
-        let year = date.getFullYear();
-        let currentDate = `${day}/${month}/${year}`;
-        const order = new (0, _orderDefault.default)(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
-        const orderService = new (0, _orderServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
-        const orderDetailsService = new (0, _orderDetailsServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
-        try {
-            orderService.insertOrder(order).then((data)=>{
-                orderIdCrl.val(data);
-                const productIds = listCart.map((item)=>item.id);
-                const orderDetails = new (0, _orderDetailsDefault.default)(null, data, productIds, listCart.length, getTotalPrice());
-                orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId)=>{
-                    console.log(orderDetailsId);
+        const isConfirm = confirm("Bạn c\xf3 chắc chắn muốn đặt h\xe0ng kh\xf4ng?");
+        if (isConfirm) {
+            const orderIdCrl = $("#orderId");
+            const nameCrl = $("#name").val();
+            const emailCrl = $("#email").val();
+            const phoneNumberCrl = $("#phoneNumber").val();
+            const addressCrl = $("#address").val();
+            // get current date
+            const date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let currentDate = `${day}/${month}/${year}`;
+            const order = new (0, _orderDefault.default)(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
+            const orderService = new (0, _orderServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+            const orderDetailsService = new (0, _orderDetailsServiceDefault.default)((0, _firebaseConstantsDefault.default).RealTimeDB, "Token");
+            try {
+                orderService.insertOrder(order).then((data)=>{
+                    orderIdCrl.val(data);
+                    const productIds = listCart.map((item)=>item.id);
+                    const orderDetails = new (0, _orderDetailsDefault.default)(null, data, productIds, listCart.length, getTotalPrice());
+                    orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId)=>{
+                        console.log(orderDetailsId);
+                    });
+                    localStorage.removeItem("cart");
+                    alert("Đặt h\xe0ng th\xe0nh c\xf4ng, cảm ơn qu\xfd kh\xe1ch.");
+                    location.reload();
                 });
-                localStorage.removeItem("cart");
-                location.reload();
-                alert("Đặt h\xe0ng th\xe0nh c\xf4ng, cảm ơn qu\xfd kh\xe1ch.");
-            });
-        } catch (error) {
-            console.log(error);
+            } catch (error) {
+                console.log(error);
+            }
         }
     };
 });

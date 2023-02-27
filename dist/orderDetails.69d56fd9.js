@@ -585,9 +585,9 @@ $(document).ready(function() {
                 if (orderId === id) list = `
             <tr>
               <td>
-                <ul>
+                <ol>
                   ${productIds.map((id)=>`<li>Xem sản phẩm: <a href="product.html?id=${id}">${id}</a></li>`).join("")}
-                </ul>
+                </ol>
               </td>
               <td>${quantity}</td>
               <td>${unitPrice} VNĐ</td>

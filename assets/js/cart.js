@@ -74,40 +74,44 @@ $(document).ready(function () {
   const buyButton = $(".buyButton")[0];
   buyButton.onclick = function (e) {
     e.preventDefault();
-    const orderIdCrl = $("#orderId");
-    const nameCrl = $("#name").val();
-    const emailCrl = $("#email").val();
-    const phoneNumberCrl = $("#phoneNumber").val();
-    const addressCrl = $("#address").val();
 
-    // get current date
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let currentDate = `${day}/${month}/${year}`;
+    const isConfirm = confirm("Bạn có chắc chắn muốn đặt hàng không?");
+    if (isConfirm) {
+      const orderIdCrl = $("#orderId");
+      const nameCrl = $("#name").val();
+      const emailCrl = $("#email").val();
+      const phoneNumberCrl = $("#phoneNumber").val();
+      const addressCrl = $("#address").val();
 
-    const order = new Order(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
-    const orderService = new OrderService(FirebaseConstants.RealTimeDB, "Token");
-    const orderDetailsService = new OrderDetailsService(FirebaseConstants.RealTimeDB, "Token");
+      // get current date
+      const date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let currentDate = `${day}/${month}/${year}`;
 
-    try {
-      orderService.insertOrder(order).then((data) => {
-        orderIdCrl.val(data);
+      const order = new Order(null, nameCrl, emailCrl, phoneNumberCrl, addressCrl, currentDate);
+      const orderService = new OrderService(FirebaseConstants.RealTimeDB, "Token");
+      const orderDetailsService = new OrderDetailsService(FirebaseConstants.RealTimeDB, "Token");
 
-        const productIds = listCart.map((item) => item.id);
-        const orderDetails = new OrderDetails(null, data, productIds, listCart.length, getTotalPrice());
-        orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId) => {
-          console.log(orderDetailsId);
+      try {
+        orderService.insertOrder(order).then((data) => {
+          orderIdCrl.val(data);
+
+          const productIds = listCart.map((item) => item.id);
+          const orderDetails = new OrderDetails(null, data, productIds, listCart.length, getTotalPrice());
+          orderDetailsService.insertOrderDetails(orderDetails).then((orderDetailsId) => {
+            console.log(orderDetailsId);
+          });
+
+          localStorage.removeItem("cart");
+
+          alert("Đặt hàng thành công, cảm ơn quý khách.");
+          location.reload();
         });
-
-        localStorage.removeItem("cart");
-        location.reload();
-
-        alert("Đặt hàng thành công, cảm ơn quý khách.");
-      });
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 });
